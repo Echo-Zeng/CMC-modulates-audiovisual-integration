@@ -1,10 +1,8 @@
 function [negLoglikeSum,negLoglikeMean] = bciNullModel(data)
 
-rng('shuffle')
+% This function calculates negloglikelihood for a null model which assumes the estimates x orignates from a uniform distribution
 
-% 在这个模型里 假设输入任意听觉刺激SA，输出的听觉刺激估计XA都是flat distribution ranging from minimum
-% to maximum
-% 仅设置A session + AV session 估计计算
+rng('shuffle')
 
 s1_min = min(data.space);
 s1_max = max(data.space);
@@ -27,7 +25,7 @@ s1_hat = s1_interval * rand(N_stim1,data.N) + s1_min;
 h = hist(s1_hat, data.space);
 freq_pred1 = bsxfun(@rdivide,h,sum(h)); % size:N_space * N_bi, each column refers to a function
 
-
+% negloglikelihood for the auditory estimate for the unisensory condition
 % sub = sortrows(data.trials(isnan(data.trials.stim2),["stim1","re1"]));
 % s = spline(data.space,freq_pred1',sub.re1);
 % idx = sortrows(repmat(eye(N_stim1),data.N_trials(1),1),'descend')';
@@ -35,17 +33,15 @@ freq_pred1 = bsxfun(@rdivide,h,sum(h)); % size:N_space * N_bi, each column refer
 % ss(ss<1e-5) = 1e-5;
 % spline1_uni = sum(sum(log(ss),'omitnan'),'omitnan');
 
+% negloglikelihood for the auditory estimate for the bimodal condition
 sub = sortrows(data.trials(~isnan(data.trials.stim1) & ~isnan(data.trials.stim2),["stim1","stim2","re1"]));
 s = spline(data.space,freq_pred1',sub.re1);
 idx = gen_idx(sub);
 ss = s(logical(idx));
 ss(ss<1e-5) = 1e-5;
 spline1_biSum = sum(sum(log(ss),'omitnan'),"omitnan");
-spline1_biMean = mean(mean(log(ss),'omitnan'),"omitnan");
 
-% error = -(spline1_uni + spline1_bi);
 negLoglikeSum = -(spline1_biSum);
-negLoglikeMean = -(spline1_biMean);
 end
 
 %%
