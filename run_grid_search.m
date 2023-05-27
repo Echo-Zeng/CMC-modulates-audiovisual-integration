@@ -48,7 +48,7 @@ for subid = 2:29
     %     dataHeading{find(cellfun(@isempty,regexp(dataHeading,'reV'))==0)}='re2';
     bcidata.trials.Properties.VariableNames=dataHeading;
     bcidata.space=linspace(-18.5,18.5,50);
-    bcidata.N_trials=[35,nan,nan] % 一种听觉刺激在基线出现35次，在想象和物理刺激组各出现80次
+    bcidata.N_trials=[35,nan,nan] % Each kind of auditory stimulus appeared 35 times at baseline condition and 80 times in mental imagery and physical stimulation conditions
     bcidata.N = 10000;
     bcidata.Nsample = size(bcidata.trials,1)
     clear dataHeading
