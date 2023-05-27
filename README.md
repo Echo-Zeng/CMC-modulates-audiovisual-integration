@@ -16,3 +16,7 @@
 
 ## Bayesian Causal Inference (BCI) Model fitting
 *bciBasicContinuous.m* and *bciMultiCondition.m* are main functions to perform BCI model fitting. These two functions are customized based on the [BCIT by Ladan Shams](https://github.com/multisensoryperceptionlab/BCIT) and the [codes shared by Ferrari and Noppeney (2021)](https://doi.org/10.1371/journal.pbio.3001465).
+### How to run the scripts
+1. Run *run_grid_search.m* and the results are stored in the folder *gridSearchResult*.
+2. Run *run_results_refine.m* and the refined results are stored in the folder *refineResult*.
+3. Run *run_results_extract.m* and the best fitting results (the ones with the lowest negloglikelihoods) with three different decision are summarized in the file *bciSummary.xlsx*.
