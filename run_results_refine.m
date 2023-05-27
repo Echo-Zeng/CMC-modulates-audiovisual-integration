@@ -20,7 +20,7 @@ options.Display = 'final';
 options.MaxIter = 4000;
 
 % set upper and lower bounds on parameters
-parameterNames = {'p1','p2','p3','p4','sigA','sigV','sigP'}; % 现有grid search结果版本是这样的，需要对应修改UB和LB的顺序
+parameterNames = {'p1','p2','p3','p4','sigA','sigV','sigP'}; 
 LB = [0 0 0 0 0.01 0.01, 0.01];
 UB = [1 1 1 1  30   30    40];
 
