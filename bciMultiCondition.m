@@ -53,12 +53,12 @@ conditions = sortrows(unique(data.trials(:,[conditionP,conditionA,conditionV,con
 
 for iCond = 1:size(conditions,1)
     
-    % 选择一部分数据
+    % choose a subset of data
     actData = data;
     actData.trials = actData.trials(ismember(actData.trials(:,[conditionP,conditionA,conditionV,conditionMu]),conditions(iCond,:),'rows'),:);
 
 
-    % ------------ 选择条件对应的参数 - P, sigA, sigV, sigP, mu
+    % ------------ choose corresponding parameters - P, sigA, sigV, sigP, mu
     if ~isempty(conditionP)
         actP = parameters(ismember(parameterNames,Pnames{conditions(iCond,:).conditionP}));
     else
