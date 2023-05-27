@@ -33,7 +33,7 @@ for subid=2:29
     end
 end
 
-k=7; % 模型中的自由参数个数
+k=7; 
 summaryList.bic = -summaryList.negloglike-0.5*k*log(summaryList.Ntrials);
 summaryList.aic = 2*k + 2*summaryList.negloglike;
 
